@@ -16,7 +16,7 @@ PORT = int(os.getenv("PORT", 9))
 
 # Log environment variables on startup
 logger.info(f"Starting Flask app with the following environment variables:")
-logger.info(f"API_KEY: {API_KEY}")
+# logger.info(f"API_KEY: {API_KEY}")
 logger.info(f"BROADCAST_ADDRESS: {BROADCAST_ADDRESS}")
 logger.info(f"PORT: {PORT}")
 
