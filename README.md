@@ -32,3 +32,40 @@ To build the Docker image:
 
 ```bash
 docker build -t wakeonlan-api .
+```
+
+## Docker Compose Configuration
+
+To deploy the API using Docker Compose:
+
+```yaml
+version: "3.8"
+
+services:
+  wol_api:
+    image: docker.io/bolferdocker/wolan-api:0.0.2
+    network_mode: host
+    environment:
+      - API_KEY=default_key
+      - BROADCAST_ADDRESS=192.168.1.255
+      - PORT=9
+    restart: unless-stopped
+```
+
+network_mode: host allows the container to use the host's network stack
+
+## Making a Request to the API
+
+Once the Docker container is running, you can interact with the API by sending a POST request to the /wake endpoint.
+
+Here's an example of how to make a request using PowerShell on Windows:
+
+
+```powershell
+Invoke-RestMethod -Uri "http://192.168.1.248:5000/wake" `
+    -Method POST `
+    -Headers @{"X-API-Key"="default_key"; "Content-Type"="application/json"} `
+    -Body '{"mac_address": "E8-9C-25-DD-C0-2A"}'
+```
+
+This request will trigger the Wake-on-LAN process for the provided MAC address.
