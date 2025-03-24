@@ -2,13 +2,10 @@ version: "3.8"
 
 services:
   wol_api:
-    build: .
-    ports:
-      - "5000:5000"
+    image: docker.io/bolferdocker/wolan-api:0.0.2
+    network_mode: host
     environment:
-      - API_KEY=${API_KEY}
-      - BROADCAST_ADDRESS=${BROADCAST_ADDRESS}
-      - PORT=${PORT}
-    env_file:
-      - .env
+      - API_KEY=default_key
+      - BROADCAST_ADDRESS=192.168.1.255
+      - PORT=9
     restart: unless-stopped
