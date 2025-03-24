@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  wol_api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - API_KEY=${API_KEY}
+      - BROADCAST_ADDRESS=${BROADCAST_ADDRESS}
+      - PORT=${PORT}
+    env_file:
+      - .env
+    restart: unless-stopped
